@@ -5,7 +5,9 @@
         <h1>标题：{{article.title}}</h1>
       </div>
     </template>
-    <div>内容：{{article.content}}</div>
+    <div >内容：
+      <div v-html="article.content"></div>
+    </div>
   </el-card>
 </template>
 
@@ -18,7 +20,7 @@ const artiId = route.params.id
 const article = ref({})
 const getArticleDetail = async (id) => {
   const { data } = await reqArticleDetail(id)
-  article.value = data[0]
+  article.value = data
 }
 onBeforeMount(() => {
   getArticleDetail(artiId)

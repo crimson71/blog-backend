@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
-const baseUrl = 'http://localhost:80/'
+export const baseUrl = 'http://127.0.0.1:80/'
 const NETWORK_ERROR = '糟糕，网络异常，请稍后重试'
 
 const service = axios.create({

@@ -21,7 +21,7 @@
 
 <script setup>
 import { ref } from 'vue'
-const activeIndex = ref(1)
+const activeIndex = ref('1')
 
 </script>
 

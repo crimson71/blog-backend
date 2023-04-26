@@ -8,10 +8,11 @@ const routes = [
     component: () => import('@/views/BackendHome.vue'),
     children: [
       {
-        path: '/classifyedit/:id',
-        name: 'classifyedit',
-        component: () => { '@/views/ClassifyEdit.vue' }
+        path: '/test',
+        name: 'test',
+        component: () => import('@/views/TestPage.vue')
       },
+
       {
         path: '/articledetail/:id',
         name: 'articledetail',

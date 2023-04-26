@@ -37,7 +37,7 @@
         <cover-upload v-model="ruleForm.cover"></cover-upload>
       </el-form-item>
       <el-form-item label="内容" prop="content">
-        <v-md-editor v-model="ruleForm.content" height="400px"></v-md-editor>
+        <editor-html v-model="ruleForm.content" ></editor-html>
       </el-form-item>
         <el-form-item>
       <el-button type="primary" @click="submitForm(ruleForm)">
@@ -59,7 +59,8 @@ const ruleForm = reactive({
   classifition: '',
   create_time: new Date(),
   content: '',
-  cover: ''
+  cover: '',
+  comment_count: 0
 
 })
 

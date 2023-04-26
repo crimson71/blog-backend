@@ -3,8 +3,6 @@
     v-model:file-list="fileList"
     class="upload-demo"
     :http-request="uploadImg"
-    :on-preview="handlePreview"
-    :on-remove="handleRemove"
     list-type="picture"
     accept=".png,.PNG,.JPG,.jpe,.JPEG,.jpeg,.gif,.GIF,.BMP,.bmp"
   >

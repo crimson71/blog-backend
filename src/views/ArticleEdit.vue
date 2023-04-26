@@ -1,5 +1,5 @@
 <template>
-   <div class="article-edit-container">
+  <div class="article-edit-container">
     <el-form
       ref="ruleFormRef"
       :model="ruleForm"
@@ -34,16 +34,22 @@
         </el-form-item>
       </el-form-item>
       <el-form-item label="封面" required>
-        <cover-upload v-model="ruleForm.cover"></cover-upload>
+
+          <cover-upload v-model="ruleForm.cover"></cover-upload>
+
       </el-form-item>
+
       <el-form-item label="内容" prop="content">
-        <v-md-editor v-model="ruleForm.content" height="400px"></v-md-editor>
+        <div :style="{width:'100%'}">
+          <editor-html v-model="ruleForm.content"></editor-html>
+      </div>
+
       </el-form-item>
-        <el-form-item>
-      <el-button type="primary" @click="submitForm(ruleForm)">
-        提交
-      </el-button>
-    </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm(ruleForm)">
+          提交
+        </el-button>
+      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -52,6 +58,7 @@
 import { onBeforeMount, reactive, ref } from 'vue'
 import { reqArticleDetail, reqArticleUpdate } from '@/api/getData.js'
 import CoverUpload from '@/components/CoverUpload.vue'
+import EditorHtml from '@/components/EditorHtml.vue'
 import { useRoute } from 'vue-router'
 import { ElMessage } from 'element-plus'
 import { formatDate } from '@/utils'
@@ -82,7 +89,6 @@ const submitForm = async () => {
     cover: ruleForm.value.cover,
     content: ruleForm.value.content,
     classifition: ruleForm.value.classifition
-
   })
   console.log(message, code)
   if (code === 200) {
@@ -94,6 +100,4 @@ const submitForm = async () => {
 }
 </script>
 
-<style>
-
-</style>
+<style></style>

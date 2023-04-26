@@ -16,7 +16,7 @@
     status-icon
   >
   <el-form-item label="分类名" prop="name">
-      <el-input v-model="dialogForm.name" />
+      <el-input v-model.trim="dialogForm.name" />
     </el-form-item>
     <el-form-item>
       <el-button type="primary" @click="submitForm()">
