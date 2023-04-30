@@ -9,7 +9,7 @@
     <el-menu-item index="0">地瓜的博客</el-menu-item>
     <div class="flex-grow" />
     <el-menu-item index="1">
-      <router-link to="#">前台入口</router-link>
+      <a href="#" class="no-underline">前台入口</a>
      </el-menu-item>
     <el-sub-menu index="2">
       <template #title>{{ '大佬，你好' }}</template>

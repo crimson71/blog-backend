@@ -6,6 +6,8 @@ import '@/assets/less/index.less'
 import '@/assets/less/reset.less'
 import 'tailwindcss/tailwind.css'
 import EditorMarkdown from '@/components/EditorMarkdown.vue'
+import '@/assets/style.css'
+import 'element-plus/dist/index.css'
 
 createApp(App)
   .use(store)

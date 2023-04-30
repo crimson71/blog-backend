@@ -32,7 +32,7 @@ service.interceptors.response.use((res) => {
 export default function request (options) {
   options.method = options.method || 'GET'
   if (options.method.toUpperCase() === 'GET') {
-    options.paramas = options.data
+    options.params = options.data
   }
   return service(options)
 }

@@ -58,7 +58,7 @@
 import { onMounted, reactive, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { reqArticleList } from '@/api/getData.js'
-import { formatDate } from '@/utils/index.js'
+import { formatDate, classifyConvert } from '@/utils/index.js'
 import { useRouter } from 'vue-router'
 import CoverCom from '@/components/CoverCom.vue'
 import 'element-plus/dist/index.css'
@@ -77,6 +77,10 @@ const articleData = ref([])
 // 获取文件列表
 const getArticleList = async () => {
   const { data } = await reqArticleList()
+  data.forEach(item => {
+    item.classifition = classifyConvert(item.classifition)
+  })
+
   articleData.value = data
   for (let i = 0; i < data.length; i++) {
     data[i].create_time = formatDate(data[i].create_time)

@@ -2,11 +2,11 @@ import request from '@/api/request.js'
 
 // 登陆
 
-export const reqLogin = (paramas) => {
+export const reqLogin = (params) => {
   return request({
     method: 'post',
     url: 'admin/login',
-    data: paramas
+    data: params
 
   })
 }
@@ -20,39 +20,39 @@ export const reqArticleList = () => {
 }
 
 // 上传图片
-export const reqUploadImg = (paramas) => {
+export const reqUploadImg = (params) => {
   return request({
     url: 'admin/article/img-load',
     method: 'post',
-    data: paramas
+    data: params
 
   })
 }
 // 新增文章
-export const reqAddArticle = (paramas) => {
+export const reqAddArticle = (params) => {
   return request({
     method: 'post',
     url: 'admin/aritcile/article-add',
-    data: paramas
+    data: params
   })
 }
 
 // 获取文章详情
-export const reqArticleDetail = (paramas) => {
-  // console.log(paramas)
+export const reqArticleDetail = (params) => {
+  // console.log(params)
   return request({
     method: 'get',
-    url: `admin/article/article-view/ ${paramas}`
+    url: `admin/article/article-view/ ${params}`
 
   })
 }
 
 // 修改文章
-export const reqArticleUpdate = (paramas) => {
+export const reqArticleUpdate = (params) => {
   return request({
     method: 'post',
     url: 'admin/article/article-update',
-    data: paramas
+    data: params
   })
 }
 // 获取分类列表
@@ -72,10 +72,45 @@ export const reqAddClassify = (params) => {
   })
 }
 // 修改分类
-export const reqUpdateClassify = (paramas) => {
+export const reqUpdateClassify = (params) => {
   return request({
     method: 'post',
     url: 'admin/clssify/classify-update',
-    data: paramas
+    data: params
+  })
+}
+
+// 获取访问记录列表
+export const reqGetVisitList = (params) => {
+  return request({
+    method: 'get',
+    url: `visitcount/get-visitlist/${params}`
+  })
+}
+
+// 获取访问数据
+export const reqGetVisitData = (params) => {
+  return request({
+    method: 'get',
+    url: 'visitcount/get-visitdata',
+    data: params
+  })
+}
+
+// 获得留言列表
+export const reqCommentsList = () => {
+  return request({
+    url: '/home/comments/getcomments',
+    method: 'get'
+
+  })
+}
+
+// 修改评论
+export const reqCommentsUpdate = (params) => {
+  return request({
+    method: 'post',
+    url: 'admin/comments/comments-update',
+    data: params
   })
 }

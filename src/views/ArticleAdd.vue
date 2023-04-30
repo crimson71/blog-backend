@@ -21,29 +21,33 @@
           </el-select>
         </el-form-item>
       </el-row>
-
-      <el-form-item label="创建时间" required>
-        <el-form-item prop="create_time">
-          <el-date-picker
-            v-model="ruleForm.create_time"
-            type="date"
-            label="Pick a date"
-            style="width: 100%"
-            value-format="YYYY-MM-DD"
-          />
+      <el-row>
+        <el-form-item label="创建时间" required>
+          <el-form-item prop="create_time">
+            <el-date-picker
+              v-model="ruleForm.create_time"
+              type="date"
+              label="Pick a date"
+              style="width: 100%"
+            />
+          </el-form-item>
         </el-form-item>
-      </el-form-item>
+        <el-form-item label="简介" prop="summary" required>
+          <el-input v-model="ruleForm.summary"></el-input>
+        </el-form-item>
+      </el-row>
+
       <el-form-item label="封面" required>
         <cover-upload v-model="ruleForm.cover"></cover-upload>
       </el-form-item>
       <el-form-item label="内容" prop="content">
-        <editor-html v-model="ruleForm.content" ></editor-html>
+        <editor-html v-model="ruleForm.content"></editor-html>
       </el-form-item>
-        <el-form-item>
-      <el-button type="primary" @click="submitForm(ruleForm)">
-        提交
-      </el-button>
-    </el-form-item>
+      <el-form-item>
+        <el-button type="primary" @click="submitForm(ruleForm)">
+          提交
+        </el-button>
+      </el-form-item>
     </el-form>
   </div>
 </template>
@@ -52,16 +56,16 @@
 import { reactive, ref } from 'vue'
 import { reqAddArticle } from '@/api/getData.js'
 import CoverUpload from '@/components/CoverUpload.vue'
+import { ElMessage } from 'element-plus'
+import { formatDate } from '@/utils/index.js'
 const formSize = ref('default')
-const ruleFormRef = ref()
 const ruleForm = reactive({
   title: '',
   classifition: '',
   create_time: new Date(),
   content: '',
   cover: '',
-  comment_count: 0
-
+  summary: ''
 })
 
 const rules = reactive({
@@ -69,13 +73,28 @@ const rules = reactive({
     { required: true, message: '文章标题必填', trigger: 'blur' },
     { min: 3, message: '最少三个字符', trigger: 'blur' }
   ],
+  summary: [
+    { required: true, message: '文章简介必填', trigger: 'blur' },
+    { min: 3, message: '最少三个字符', trigger: 'blur' }
+  ],
   classifition: [{ required: true, message: '文章分类必填', trigger: 'blur' }],
   content: [{ required: true, message: '文章内容必填', trigger: 'blur' }]
 })
 
+const ruleFormRef = ref()
 const submitForm = async (data) => {
-  const { message } = await reqAddArticle(data)
-  console.log(message)
+  data.create_time = formatDate(data.create_time)
+  ruleFormRef.value.validate(async (valid, field) => {
+    if (valid) {
+      const { message } = await reqAddArticle(data)
+      ruleFormRef.value.resetFields()
+      ruleForm.content = ''
+      ElMessage({
+        type: 'success',
+        message: message
+      })
+    }
+  })
 }
 </script>
 
